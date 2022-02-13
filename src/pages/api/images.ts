@@ -67,6 +67,7 @@ export default async function handler(
         )
       )
       .then(response => {
+
         const formattedData = response.data.map(item => ({
           ...item.data,
           ts: item.ts,
@@ -79,7 +80,7 @@ export default async function handler(
         });
       })
       .catch(err => {
-        return res.status(400).json(err);
+        return res.status(200).json(err);
       });
   }
 

@@ -1,18 +1,20 @@
 import { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { theme } from '../styles/theme';
+import { queryClient } from '../services/queryClient';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  const queryClient = new QueryClient();
-
   return (
-    <ChakraProvider resetCSS theme={theme}>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider resetCSS theme={theme}>
         <Component {...pageProps} />
-      </QueryClientProvider>
-    </ChakraProvider>
+      </ChakraProvider>
+
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 }
 
